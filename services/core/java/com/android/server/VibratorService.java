@@ -34,6 +34,7 @@ import android.hardware.input.InputManager;
 import android.hardware.vibrator.IVibrator;
 import android.hardware.vibrator.V1_0.EffectStrength;
 import android.icu.text.DateFormat;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.os.BatteryStats;
 import android.os.Binder;
@@ -123,10 +124,10 @@ public class VibratorService extends IVibratorService.Stub
     private static final int ONEPLUS_SCALE = 100000;
     private static final int ONEPLUS_BREAK_CONSTANT = 9990;
     private static final int ONEPLUS_EFFECT_THRESHOLD = 100;
-    private static final long ONEPLUS_EFFECT_CLICK = 5909995;
+    private static final long ONEPLUS_EFFECT_CLICK = 1600051;
     private static final long[] ONEPLUS_DOUBLE_CLICK_EFFECT_FALLBACK_TIMINGS = { 0, 80, 25, 75 };
-    private static final long ONEPLUS_EFFECT_HEAVY_CLICK = 1600051;
-    private static final long ONEPLUS_EFFECT_TEXTURE_TICK = 1100111;
+    private static final long ONEPLUS_EFFECT_HEAVY_CLICK = 7009997;
+    private static final long ONEPLUS_EFFECT_TEXTURE_TICK = 900021;
     private static final long ONEPLUS_EFFECT_TICK = 1100031;
     private static final long ONEPLUS_EFFECT_POP = 1100041;
     private static final long ONEPLUS_EFFECT_THUD = 3000003;
@@ -1007,7 +1008,7 @@ public class VibratorService extends IVibratorService.Stub
                     return ONEPLUS_EFFECT_CLICK;
             }
         } else if (millis >= 0) {
-            final int usage = attrs.getUsage();
+            final int usage = attrs.getAudioAttributes().getUsage();
 
             if (isRingtone(usage)) {
                 return (ONEPLUS_SCALE * millis) + mRingIntensity;
